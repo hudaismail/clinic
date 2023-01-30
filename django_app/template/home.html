@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>clinic</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?200 1453">
+</head>
+<body>
+<div>
+<ul>
+    <li><a href="index">home</a></li>
+    <li><a href="contact">Contact</a></li>
+{% if user.is_authenticated %}
+    <li>Hello : {{user.first_name}}</li>
+    <li><a href="accounts/logout">logout</a></li>
+{% else %}
+    <li><a href="accounts/register">register</a></li>
+    <li><a href="accounts/login">login</a></li>
+{% endif %}
+
+</ul>
+    <br><br><br>
+</div>
+
+<div class="btn"><a href="appointment/appointment">make an appointment</a></div>
+
+<br>
+
+<div class="row">
+    {% for duct in ducts %}
+    <div class="column">
+        <div class="border">
+        <div class="name"><h1>{{duct.name}}</h1></div>
+        <img src="{{duct.img.url}}">
+         <div><p>{{duct.desc}}</p></div>
+         <div class="price">{{duct.price}}</div>
+
+        {% if duct.offer %}
+         <div class="offer">special offer</div>
+        {% endif %}
+            </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
